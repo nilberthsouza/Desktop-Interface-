@@ -4,9 +4,19 @@ from tkinter import messagebox
 db = Database('store.db')
 
 def select_item(event):
-    print('select')
+    global selected_item
+    index = parts_list.curselection()[0]
+    selected_item = parts_list.get(index)
+    print(selected_item)
 
-
+    part_entry.delete(0,END)
+    part_entry.insert(END, selected_item[1])
+    customer_entry.delete(0,END)
+    customer_entry.insert(END, selected_item[2])
+    retailer_entry.delete(0,END)
+    retailer_entry.insert(END, selected_item[3])
+    price_entry.delete(0,END)
+    price_entry.insert(END, selected_item[4])
 def populate_list():
     #certifica que não há nada no listbox antes de mostrar o resultado do db
     parts_list.delete(0,END)
@@ -23,9 +33,14 @@ def add_item():
     populate_list()
 
 def remove_item():
-    print('remove')
+    db.remove(selected_item[0])
+    populate_list()
+
+
 def update_item():
     print('Update')
+
+
 
 def clear_text():
     print('clear')
@@ -51,8 +66,8 @@ retailer_text = StringVar()
 retailer_label = Label(app, text='Retailer',font=('bold',14) )
 retailer_label.grid(row=1, column=0,stick='w')
 
-customer_entry = Entry(app, textvariable=retailer_text)
-customer_entry.grid(row=1,column=1)
+retailer_entry = Entry(app, textvariable=retailer_text)
+retailer_entry.grid(row=1,column=1)
 #price
 price_text = StringVar()
 price_label = Label(app, text='Price',font=('bold',14))
