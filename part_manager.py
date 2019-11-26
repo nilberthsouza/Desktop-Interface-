@@ -3,7 +3,8 @@ from db import Database
 from tkinter import messagebox
 db = Database('store.db')
 
-
+def select_item(event):
+    print('select'
 
 
 def populate_list():
@@ -29,14 +30,7 @@ def update_item():
 def clear_text():
     print('clear')
 
-
-
 app = Tk()
-
-
-
-
-
 
 #part
 part_text = StringVar()
@@ -76,6 +70,9 @@ scrollbar.grid(row=3, column=3)
 #set scroll to listbox
 parts_list.configure(yscrollcommand=scrollbar.set)
 scrollbar.configure(command=parts_list.yview)
+
+parts_list.bind('<<ListboxSelect>>',select_item)
+
 
 #buttons
 add_btn = Button(app, text='Add Part',width=12,command=add_item)
