@@ -4,7 +4,7 @@ from tkinter import messagebox
 db = Database('store.db')
 
 def select_item(event):
-    print('select'
+    print('select')
 
 
 def populate_list():
